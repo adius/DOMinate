@@ -1,16 +1,20 @@
-TestCase('Standard', {
-	'test return of DOM element': function () {
-		/*:DOC gen = <div></div>*/
+var expect = require('expect.js');
+var DOMinate = require('..');
+require('./document-mock');
+var ns = 'http://www.w3.org/1999/xhtml';
 
-		assertEquals('Should return a node of type', 1, DOMinate([this.gen, ['a']]).nodeType);
-	},
-
-	'test syntax-sugar id': function () {
-		/*:DOC gen = <div></div>*/
-		/*:DOC ref = <div><div id="test"></div></div>*/
-
-		DOMinate([this.gen, ['div#test']]);
-
-		assertTrue(this.gen.outerHTML + ' == ' + this.ref.outerHTML, this.gen.isEqualNode(this.ref));
-	}
+describe('standard', function () {
+	it('returns the node that is the first element of the root array', function () {
+		var element = document.createElementNS(ns, 'div');
+		expect(DOMinate([element, ['a']])).to.be(element);
+	});
+	
+	it('supports id syntax-sugar', function () {
+		var element = document.createElementNS(ns, 'div');
+		DOMinate([element, ['div#test']]);
+		expect(element.children.length).to.be(1);
+		expect(element.children[0].__ns).to.be(ns);
+		expect(element.children[0].__tag).to.be('div');
+		expect(element.children[0].id).to.be('test');
+	});
 });

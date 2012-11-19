@@ -1,0 +1,14 @@
+{
+  "name": "DOMinate",
+  "repo": "microjs/DOMinate",
+  "description": "DOMinate the DOM with this simple, yet powerful DOM building utility and template engine.",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "twitter": "@ForbesLindesay",
+  "license": "MIT"
+}
